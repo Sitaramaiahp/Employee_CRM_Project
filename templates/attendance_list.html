@@ -1,0 +1,72 @@
+
+{% extends "base.html" %}
+{% block content %}
+<!-- Main Section -->
+<div class="main-section">
+    <!-- Nav Section -->
+    <div class="nav-section home-nav">
+        <a href="#" class="nav-title btn">Attendance</a>
+        <!-- Search and filter form -->
+    <form method="get" class="nav-search">
+        <input type="text" name="q" placeholder="Search employee name" value="{{ request.GET.q }}">
+        <input type="date" name="date" value="{{ request.GET.date }}">
+        <button type="submit">Search</button>
+    </form>
+        <div class="nav-links">
+            <a href="{% url 'add_attendance' %}" class="btn add-button">Add</a>
+            {% if user.is_superuser or request.user.groups.first.name == "Admin" %}
+            <a href="{% url 'alldelete_attendence' %}" class="btn delete-button">All Delete</a>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Attendance Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Employee</th>
+                <th>Date</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.employee.name }}</td>
+                <td>{{ record.date }}</td>
+                <td>{{ record.check_in}}</td>
+                <td>{{ record.check_out}}</td>
+                <td>
+                    <div class="icons-section">
+                        <a href="{% url 'edit_attendance' record.id %}">
+                            <div class="icon-container edit">
+                                <button class="icon-button edit"><i class="fas fa-pen"></i></button>
+                                <div class="tooltip">Edit</div>
+                            </div>
+                        </a>
+                        <a href="{% url 'delete_attendance' record.id %}">
+                            <div class="icon-container delete">
+                                <button class="icon-button delete"><i class="fas fa-trash"></i></button>
+                                <div class="tooltip">Delete</div>
+                            </div>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ records.previous_page_number }}" class="btn">Previous</a>
+        {% endif %}
+            <a>Page {{ records.number }} of {{ records.paginator.num_pages }}</a>
+        {% if records.has_next %}
+        <a href="?page={{ records.next_page_number }}" class="btn">Next</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

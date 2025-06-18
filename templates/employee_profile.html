@@ -1,0 +1,55 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<!-- Main Section -->
+<div class="main-section">
+    <!-- Nav Section -->
+    <div class="nav-section home-nav emp_nav">
+        <a href="#" class="btn nav-title">My Profile</a>
+        <a href="{% url 'employee_attendance_list' %}" class="btn nav-title">My Attendance</a>
+        <div class="icons-section">
+            <a href="{% url 'edit_employee' employee.id %}">
+                <div class="icon-container edit">
+                    <button class="icon-button edit"><i class="fas fa-pen"></i></button>
+                    <div class="tooltip">Edit</div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- Employee Table -->
+    <table class="emp_table">    
+        <tr>
+            <th>Image</th>
+            <td>
+                {% if employee.image %}
+                <img src="{{employee.image.url}}" alt="employee_image" width="50">
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{employee.name}}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{employee.email}}</td>
+        </tr>
+        <tr>
+            <th>Contact</th>
+            <td>{{employee.contact}}</td>
+        </tr>
+        <tr>
+            <th>Department</th>
+            <td>{{employee.department}}</td>
+        </tr>
+        <tr>
+            <th>Role</th>
+            <td>{{employee.role}}</td>
+        </tr>
+        <tr>
+            <th style="border-bottom: none;">Join Date</th>
+            <td>{{employee.join_date}}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

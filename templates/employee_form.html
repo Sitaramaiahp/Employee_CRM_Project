@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+{% block content %}
+<!-- Add Section -->
+<div class="form-page">
+    <h2>{{title}}</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions">
+            {% if request.user.is_superuser or request.user.groups.first.name == "Admin" or request.user.groups.first.name == "HR Manager" %}
+            <a href="{% url 'employee_list' %}"><button type="button">Cancle</button></a>
+            {% elif request.user.groups.first.name == "Employee" %}
+            <a href="{% url 'employee_profile' %}"><button type="button">Cancle</button></a>
+            {% endif %}
+            <button type="submit" class="add-btn">Save</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

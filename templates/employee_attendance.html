@@ -1,0 +1,50 @@
+
+{% extends "base.html" %}
+{% block content %}
+<!-- Main Section -->
+<div class="main-section">
+    <!-- Nav Section -->
+    <div class="nav-section home-nav">
+        <a href="#" class="nav-title btn">My Attendance</a>
+        <div class="nav-links">
+            {% if request.user.is_superuser or request.user.groups.first.name == "Admin" or request.user.groups.first.name == "HR Manager" %}
+            <a href="{% url 'add_attendance' %}" class="btn add-button">Add</a>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Attendance Table -->
+    {% if attendances %}
+    <table>
+        <thead>
+            <tr>
+                <th>Employee</th>
+                <th>Date</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in attendances %}
+            <tr>
+                <td>{{ record.employee.name }}</td>
+                <td>{{ record.date }}</td>
+                <td>{{ record.check_in}}</td>
+                <td>{{ record.check_out}}</td>
+                <td>
+                    <div class="icons-section">
+                        <a href="{% url 'edit_attendance' record.id %}">
+                            <div class="icon-container edit">
+                                <button class="icon-button edit"><i class="fas fa-pen"></i></button>
+                                <div class="tooltip">Edit</div>
+                            </div>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

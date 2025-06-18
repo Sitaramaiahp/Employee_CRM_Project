@@ -1,0 +1,344 @@
+
+/* All */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #333;
+    margin-top: 10px;
+}
+
+form {
+    background-color: #fff;
+    padding: 30px;
+    margin-bottom: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    color: #555;
+}
+
+input, select {
+    padding: 4px 10px;
+    margin-top: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button, .btn {
+    padding: 5px 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+button[type="reset"] {
+    background-color:  #ff9800;
+    color: white;
+}
+
+button[type="button"] {
+    background-color: #dad7cd;
+    color: #121212;
+}
+
+button:hover, .nav-title:hover {
+    transform: scale(1.05);
+}
+
+/* Common Navbar */
+.nav-section {
+    width: 100%;
+    padding: 16px 20px;
+    background: #121212;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-title {
+    font-size: 20px;
+    border: 1px solid #ccc;
+}
+
+.nav-search {
+    background: transparent;
+    padding: 0px 5px;
+    margin-bottom: 0px;
+    box-shadow: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+/* Navbar */
+.nav-links .login {
+    background-color: #fff;
+    color: #121212;
+}
+
+.nav-links .logout {
+    background-color: #f00000;
+}
+.nav-links .signup {
+    background-color: #0c9707;
+}
+
+.nav-links .login:hover, .logout:hover, .signup:hover {
+    transform: scale(1.05);
+}
+
+/* Main Section */
+.main-section {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Home Nav */
+.home-nav {
+    border-radius: 12px 12px 0px 0px;
+    background: linear-gradient(145deg, #00c6ff, #0072ff);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.home-nav .add-button {
+    background: linear-gradient(145deg, #0c9707, #4ff526);
+    box-shadow: 0 4px 15px rgba(0, 255, 0, 0.5);
+}
+
+.home-nav .delete-button {
+    background: linear-gradient(145deg, #f00000, #ff4e50);
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+}
+
+.home-nav .delete-button:hover, .add-button:hover {
+    transform: scale(1.05);
+}
+
+.emp_nav {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 15px;
+}
+
+/* Table Section */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #edf6f9;
+    color: #0d1321;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    border-radius: 0px 0px 12px 12px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.emp_table {
+    width: 50%;
+}
+
+th, td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid #0d1321;
+}
+
+th {
+    background:  #00b4d8;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+tr:hover {
+    background-color: #dad7cd;
+    transition: 0.3s ease;
+}
+
+td {
+    font-size: 15px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* Icons Section */
+.icons-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    gap: 10px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.icon-container {
+    position: relative;
+}
+
+.icon-button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: #222;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.icon-button.edit {
+    background: linear-gradient(145deg, #ffb347, #ff7300);
+}
+
+.icon-button.edit:hover {
+    box-shadow: 0 0 15px #ff7300;
+    transform: scale(1.1);
+}
+
+.icon-button.delete {
+    background: linear-gradient(145deg, #ff4e50, #f00000);
+}
+
+.icon-button.delete:hover {
+    box-shadow: 0 0 15px #f00000;
+    transform: scale(1.1);
+}
+
+/* Tooltip styling */
+.tooltip {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.95);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.icon-container.edit .tooltip {
+    background: #ff7300;
+}
+
+.icon-container.delete .tooltip {
+    background: #f00000;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: currentColor transparent transparent transparent;
+    filter: brightness(0.9);
+}
+
+.icon-container:hover .tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px) scale(1);
+}
+
+/* Form Section */
+.form-page {
+    background-color: #fff;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.add-btn{
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Pagination */
+.pagination {
+    padding-left: 0;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.pagination a {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: #121212;
+}
+
+.pagination .btn {
+    background: #007bff;
+    color: #fff;
+    border: none;
+}

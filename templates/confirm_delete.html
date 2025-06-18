@@ -1,0 +1,29 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="form-page">
+    <h2>Delete</h2>
+    <form actions="" method="post">
+    {% csrf_token %}
+    <p>Are you sure,<br>You want to delete this
+        {% if employee %}
+        {% for emp in employee %}
+        <u> <b>{{emp.name}}</b> </u> - <u> <i>({{emp.department}})</i> </u>
+        {% endfor %} 
+        {% elif record %}
+        <u> <b>{{ record.employee.name }}</b> </u> - <u> <i>({{ record.date }})</i> </u>
+        {% else %}
+        <u><b>{{msg}}</b></u>
+        {% endif %}
+        Records?</p>
+    <br><br><br>
+    <div class="form-actions">
+        {% if employees %}
+        <a href="{% url 'employee_list' %}"><button type="button">Cancle</button></a>
+        {% else %}
+        <a href="{% url 'attendance_list' %}"><button type="button">Cancle</button></a>
+        {% endif %}
+        <button type="submit" class="delete-btn">Yes, Delete</button>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,102 @@
+
+{% extends "base.html" %}
+{% block content %}
+<!-- Main Section -->
+<div class="main-section">
+    <!-- Nav Section -->
+    <div class="nav-section home-nav">
+        <a href="#" class="btn nav-title">Employee Table</a>
+        <form method="get" class="nav-search">
+            <input type="text" name="search" placeholder="Search name or email" value="{{ search_query }}"/>
+            <select name="department">
+                <option value="">All Departments</option>
+                {% for dept in departments %}
+                    <option value="{{ dept }}" {% if selected_department == dept %}selected{% endif %}>
+                        {{ dept }}
+                    </option>
+                {% endfor %}
+            </select>
+            <select name="role">
+                <option value="">All Roles</option>
+                {% for r in roles %}
+                    <option value="{{ r }}" {% if selected_role == r %}selected{% endif %}>
+                        {{ r }}
+                    </option>
+                {% endfor %}
+             </select>
+            <button type="submit">Search</button>
+        </form>
+
+        <div class="nav-links">
+            <a href="{% url 'add_employee' %}" class="btn add-button">Add Employee</a>
+            {% if user.is_superuser or request.user.groups.first.name == "Admin" %}
+            <a href="{% url 'alldelete_employee' %}" class="btn delete-button">All Delete</a>
+            {% endif %}
+        </div>
+    </div>
+        
+    <!-- Employee Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Department</th>
+                <th>Role</th>
+                <th>Join Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>
+                    {% if employee.image %}
+                    <img src="{{employee.image.url}}" alt="employee_image" width="50">
+                    {% endif %}
+                </td>
+                <td>{{employee.name}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{employee.contact}}</td>
+                <td>{{employee.department}}</td>
+                <td>{{employee.role}}</td>
+                <td>{{employee.join_date}}</td>
+                <td>
+                    <div class="icons-section">
+                        <a href="{% url 'edit_employee' employee.id %}">
+                            <div class="icon-container edit">
+                                <button class="icon-button edit"><i class="fas fa-pen"></i></button>
+                                <div class="tooltip">Edit</div>
+                            </div>
+                        </a>
+                        <a href="{% url 'delete_employee' employee.id %}">
+                            <div class="icon-container delete">
+                                <button class="icon-button delete"><i class="fas fa-trash"></i></button>
+                                <div class="tooltip">Delete</div>
+                            </div>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No employees found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <!-- Pagination -->
+    <div class="pagination">
+    {% if employees.has_previous %}
+        <a href="?page={{ employees.previous_page_number }}" class="btn">Previous</a>
+    {% endif %}
+        <a>Page {{ employees.number }} of {{ employees.paginator.num_pages }}</a>
+    {% if employees.has_next %}
+        <a href="?page={{ employees.next_page_number }}" class="btn">Next</a>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}
